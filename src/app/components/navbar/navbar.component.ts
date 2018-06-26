@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { TemplateSrvService } from '../../servicios/template-srv.service';
+import { Subject } from "rxjs/Subject";
 
 @Component({
   selector: 'app-navbar',
@@ -15,6 +17,12 @@ export class NavbarComponent {
       map(result => result.matches)
     );
     
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private templateService: TemplateSrvService,private breakpointObserver: BreakpointObserver) {}
+
+  setTemplate(templateNumber:string){
+    this.templateService.setTemplate(templateNumber);
+  }
+  
   
   }
+  

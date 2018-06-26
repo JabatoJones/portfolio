@@ -11,6 +11,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LayoutModule } from '@angular/cdk/layout';
+//Servicios
+import { TemplateSrvService } from './servicios/template-srv.service';
 
 
 @NgModule({
@@ -44,7 +46,9 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatIconModule,
     MatCardModule
   ],
-  providers: [],
+  providers: [
+    TemplateSrvService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
