@@ -13,6 +13,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { LayoutModule } from '@angular/cdk/layout';
 //Servicios
 import { TemplateSrvService } from './servicios/template-srv.service';
+import { CurrentAppsComponent } from './components/current-apps/current-apps.component';
+import { UserInfoComponent } from './components/user-info/user-info.component';
 
 
 @NgModule({
@@ -21,6 +23,8 @@ import { TemplateSrvService } from './servicios/template-srv.service';
     LoginComponent,
     NavbarComponent,
     DashboardComponent,
+    CurrentAppsComponent,
+    UserInfoComponent,
   ],
   imports: [
     BrowserModule,
