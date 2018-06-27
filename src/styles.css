@@ -1,7 +1,28 @@
-/* You can add global styles to this file, and also import other style files */
-
-body { margin: 0; }
-
-body { margin: 0; }
-
-body { margin: 0; }
+.editFoto {
+    position: relative;
+    top: 2em;
+    z-index: 1;
+    left: 7em;
+    font-size: 2.5em;
+    color: #212529;
+    cursor: pointer;
+    background-color: #D5A400;
+    height: 1.2em;
+    width: 1.2em;
+    border-radius: 1em;
+    
+}
+.tabsUser {
+    color: #FFC500;
+}
+#configTab,#configTab2 {
+  border-color: #18BC9C;
+  color: #FFC500;
+  background-color: #fff;
+}
+#configTab.active, #configTab2.active{
+  margin-right: 0.25em;
+  color: #fff;
+  background-color: #D5A400;
+  border-color: #18BC9C;
+}

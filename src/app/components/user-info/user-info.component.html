@@ -1,8 +1,23 @@
-<div class="card border-info mb-3" style="max-width: 18rem;">
-  <div class="card-body text-info">
+<mat-icon  class="editFoto" style="height: 1.2em; width: 1.2em; border-radius: 1em;">add_a_photo</mat-icon>
+<div class="card border-warning" style="max-height: 18rem;">
+  <div class="card-body">
     <img class="card-img-top" src="../../../assets/img/user.svg" alt="Card image cap">
-    <button mat-mini-fab color="warn">+</button>
-    <h5 class="card-title text-center">Nombre Usuario</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <hr>
+    <h4 class="card-title text-center">Nombre Usuario</h4>
+    <ngb-tabset>
+      <ngb-tab id="configTab" title="Aptitudes" class="tabsUser">
+        <ng-template ngbTabContent>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab id="configTab2" title="Mis Logros">
+        <ng-template ngbTabContent>
+          <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque officiis aperiam deserunt error similique eius,
+            numquam voluptates ab unde voluptas quaerat quisquam vel asperiores fugiat exercitationem impedit illum ipsum
+            eum.
+          </p>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
   </div>
 </div>
