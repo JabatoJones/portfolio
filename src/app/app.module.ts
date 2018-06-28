@@ -16,7 +16,10 @@ import { CurrentAppsComponent } from './components/current-apps/current-apps.com
 import { UserInfoComponent } from './components/user-info/user-info.component';
 
 //Servicios
+import { HttpClientModule } from '@angular/common/http';
 import { TemplateSrvService } from './servicios/template-srv.service';
+import { FooterComponent } from './components/footer/footer.component';
+
 
 
 
@@ -28,9 +31,11 @@ import { TemplateSrvService } from './servicios/template-srv.service';
     DashboardComponent,
     CurrentAppsComponent,
     UserInfoComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     MatButtonModule,
     MatCheckboxModule,

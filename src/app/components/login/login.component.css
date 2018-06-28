@@ -4,13 +4,17 @@
     src: url(../../../assets/fonts/elasis.ttf);
 }
 .loginLink{
-    width: 15%;
+    width: 25%;
     cursor: pointer;
 }
+
 .logoLogin{
-    width: 30%;
+    width: 30em;
     margin: 10em 0 0 auto;
     z-index: -1;
+}
+.loginLink:hover{
+    width: 29em;
 }
 .logoFont{
     font-family: "elasis";
@@ -21,7 +25,7 @@
 .wrapper {
   position: fixed;
   background: #50a3a2;
-  background: linear-gradient(to bottom right, #ABE341 0%, #53e3a6 100%);
+  background: linear-gradient(to bottom right, #FFE99F 0%, #D5A400 100%);
   left: 0;
   top : 0;
   width: 100%;
@@ -107,7 +111,7 @@ form button:hover {
   display: block;
   width: 40px;
   height: 40px;
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(213, 164, 0, 0.3);
   bottom: -160px;
   -webkit-animation: square 25s infinite;
   animation: square 25s infinite;
@@ -136,7 +140,7 @@ form button:hover {
   height: 60px;
   -webkit-animation-duration: 22s;
           animation-duration: 22s;
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: rgba(160, 130, 34, 0.25);;
 }
 .bg-bubbles li:nth-child(5) {
   left: 70%;
@@ -147,7 +151,7 @@ form button:hover {
   height: 120px;
   -webkit-animation-delay: 3s;
           animation-delay: 3s;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(213, 164, 0, 0.2);
 }
 .bg-bubbles li:nth-child(7) {
   left: 32%;
@@ -173,7 +177,7 @@ form button:hover {
           animation-delay: 2s;
   -webkit-animation-duration: 40s;
           animation-duration: 40s;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(213, 164, 0, 0.3);
 }
 .bg-bubbles li:nth-child(10) {
   left: 90%;
@@ -201,4 +205,10 @@ form button:hover {
     -webkit-transform: translateY(-700px) rotate(600deg);
             transform: translateY(-700px) rotate(600deg);
   }
+}
+@media only screen and (max-width: 768px) {
+    .loginLink{
+      width: 15em;
+      cursor: pointer;
+    }
 }

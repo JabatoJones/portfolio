@@ -1,14 +1,14 @@
 <app-navbar></app-navbar>
 <div class="container" *ngIf="template == 0 || !template">
     <div class="row">
-        <div class="col-4">
+        <div class="userSection">
             <!-- INFO LINKEDIN -->
             <section>
                 <user-info></user-info>
             </section>
             <!-- FIN INFO LINKEDIN -->
         </div>
-        <div class="col-8">
+        <div class="appSection">
              <current-apps></current-apps>
         </div>
     </div>
@@ -19,3 +19,4 @@
 <div class="container" *ngIf="template == 2">
     T3
 </div>
+<footer></footer>

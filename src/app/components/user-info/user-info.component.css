@@ -1,0 +1,17 @@
+.card{
+    max-height: 18rem;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .card{
+        width: 360%;
+    }
+    .card .card-title {
+        padding-left: 1.5em;
+    }
+    .card .card-body .card-img-top{
+        width: 8em;
+        padding-left: 2.5em;
+    }
+}

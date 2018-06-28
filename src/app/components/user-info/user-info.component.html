@@ -1,5 +1,10 @@
-<mat-icon  class="editFoto" style="height: 1.2em; width: 1.2em; border-radius: 1em;">add_a_photo</mat-icon>
-<div class="card border-warning" style="max-height: 18rem;">
+<div class="custom-file">
+  <input type="file" (change)="onFileChanged($event)"  #fileInput class="custom-file-input" id="customFile" style="visibility: hidden;">
+  <label class="custom-file-label" for="customFile" style="visibility: hidden;">
+    <mat-icon class="editFoto" style="height: 1.2em; width: 1.2em; border-radius: 1em; visibility: visible;">add_a_photo</mat-icon>
+  </label>
+</div>
+<div class="card border-warning">
   <div class="card-body">
     <img class="card-img-top" src="../../../assets/img/user.svg" alt="Card image cap">
     <hr>
