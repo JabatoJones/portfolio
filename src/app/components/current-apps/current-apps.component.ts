@@ -13,3 +13,4 @@ export class CurrentAppsComponent implements OnInit {
   }
 
 }
+

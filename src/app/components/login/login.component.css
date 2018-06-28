@@ -212,3 +212,31 @@ form button:hover {
       cursor: pointer;
     }
 }
+@media only screen and (max-width: 1400px) {
+  .loginLink{
+    position: absolute;
+    width: 20em;
+    cursor: pointer;
+    bottom: 5em;
+    left: 30em;
+  }
+  .loginLink:hover{
+    width: 18em;
+    bottom: 5.5em;
+    left: 30.5em;
+    position: absolute;
+}
+  .logoLogin{
+    width: 30em;
+    z-index: -1;
+    position: relative;
+    bottom: 8em;
+  }
+  .logoFont{
+      font-family: "elasis";
+      font-size: 3.5em;
+      color: white;
+      position: relative;
+      bottom: 2em;
+    } 
+}

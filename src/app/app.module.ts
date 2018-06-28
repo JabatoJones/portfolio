@@ -14,11 +14,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { LayoutModule } from '@angular/cdk/layout';
 import { CurrentAppsComponent } from './components/current-apps/current-apps.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 //Servicios
 import { HttpClientModule } from '@angular/common/http';
 import { TemplateSrvService } from './servicios/template-srv.service';
-import { FooterComponent } from './components/footer/footer.component';
+import { AddNewAppComponent } from './components/add-new-app/add-new-app.component';
+
 
 
 
@@ -32,6 +34,7 @@ import { FooterComponent } from './components/footer/footer.component';
     CurrentAppsComponent,
     UserInfoComponent,
     FooterComponent,
+    AddNewAppComponent,
   ],
   imports: [
     BrowserModule,
