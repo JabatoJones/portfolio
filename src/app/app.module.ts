@@ -20,6 +20,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TemplateSrvService } from './servicios/template-srv.service';
 import { AddNewAppComponent } from './components/add-new-app/add-new-app.component';
+import { RegisterComponent } from './components/register/register.component';
 
 
 
@@ -35,6 +36,7 @@ import { AddNewAppComponent } from './components/add-new-app/add-new-app.compone
     UserInfoComponent,
     FooterComponent,
     AddNewAppComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
