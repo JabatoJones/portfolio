@@ -2,7 +2,12 @@ const express = require('express');
 const app = express();
 const morgan = require("morgan");
 const {moongoose}  = require("./database")
+var cors = require('cors');
 
+app.options('*', cors()); // preflight OPTIONS; put before other routes
+app.listen(80, function(){
+  console.log('CORS-enabled web server listening on port 80');
+});
 /*const http = require('http');
 const path = require('path');
 */

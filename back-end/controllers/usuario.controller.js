@@ -1,6 +1,24 @@
-const Usuario = require("../models/user");
+var Usuario = require("../models/user");
 const usuarioCtrl = {};
 
+usuarioCtrl.login = async (req,res)=>{
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    var user = req.body.user;
+    var pass = req.body.pass;
+    var response = await Usuario.findOne({user,pass});
+    if(!response) {
+        //login incorrecto
+        console.log('user incorrect');
+        res.json({
+            error : "Usuario/Password incorrecto"
+        })
+    }else{
+        //make session and setear al usuario.
+        console.log('Usuario logado correctamente');
+        res.json(response);
+    }
+}
 
 usuarioCtrl.getAllUser = async (req, res) => {
     try {
@@ -17,7 +35,7 @@ usuarioCtrl.getDataUser = async (req, res) => {
     res.json(user);
 }
 
-usuarioCtrl.createUser = async (req, res) => {
+usuarioCtrl.register = async (req, res) => {
     try {
         const user = new Usuario(req.body);
     await user.save();

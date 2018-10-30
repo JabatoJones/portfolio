@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {Title} from '@angular/platform-browser';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { UserService } from "../../servicios/user-service.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +11,50 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService: UserService,private router: Router,) { }
+
+  public submitted :boolean;
+  public error:boolean;
+  loginForm: FormGroup;
 
   ngOnInit() {
   }
 
+  /*login(datosAcceso){
+    this.userService.login(datosAcceso);
+  }*/
+  
+ 
+
+  public login(username: string, password: string, event: Event): void {
+    this.submitted = true;
+    this.error = null;
+    const name = username;
+    const pass = password;
+    var params : any = {
+      'name' : name,
+      'pass' : pass
+    }
+    //var body = "name=" + name + "&pass=" + pass;
+    if(params.name && params.pass){
+      this.userService.login(params).subscribe(
+        res => {
+          let u: any = {username: username};        
+          //this.userService.setUserLoggedIn(u);
+  
+        },
+        error => {
+          console.error(error);
+  
+        },
+        () => this.navigate()
+      );
+  
+    }
+
+  }
+
+  navigate() {    
+    this.router.navigateByUrl('/dashboard');
+  }
 }

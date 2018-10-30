@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from "@angular/forms";
 
 import { AppComponent } from './app.component';
 //Material Style
@@ -20,10 +21,6 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TemplateSrvService } from './servicios/template-srv.service';
 import { AddNewAppComponent } from './components/add-new-app/add-new-app.component';
-import { RegisterComponent } from './components/register/register.component';
-
-
-
 
 
 @NgModule({
@@ -36,9 +33,9 @@ import { RegisterComponent } from './components/register/register.component';
     UserInfoComponent,
     FooterComponent,
     AddNewAppComponent,
-    RegisterComponent,
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,

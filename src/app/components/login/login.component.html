@@ -1,29 +1,38 @@
 <div class="wrapper">
   <div class="container">
     <figure>
-      <img class ="logoLogin"src="../../../assets/img/logo.png" alt="Logo Maletin">
+      <img class="logoLogin" src="../../../assets/img/logo.png" alt="Logo Maletin">
       <div class="logoFont">PORFOLIO</div>
     </figure>
-
-    <form class="form">
-      <nav>
+    <!--
+  <nav>
         <a routerLink="/dashboard">
           <img ng-click="" class="loginLink" src="../../../assets/buttons/es_ES.png" alt="Longin linkendin">
         </a>
       </nav>
-      
-    </form>
-  </div>
 
-  <ul class="bg-bubbles">
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-  </ul>
+    <form class="form" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+            <input type="text" name="name" id="name">
+            <input type="text" name="pass" id="pass">
+            <input type="submit" value="Login">
+    </form>
+    -->
+    <form class="form">
+        <input type="text" #username name="username" placeholder="Username">
+        <input type="password" #password name="password" placeholder="Password">
+        <button type="submit" (click)="login(username.value, password.value, $event)" id="login-button">Login</button>
+      </form>
+
+    <ul class="bg-bubbles">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
 </div>
