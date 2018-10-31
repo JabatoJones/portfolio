@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'addApp' , component: AddNewAppComponent },
   { path: '', component: LoginComponent },
+  { path: 'register' , component:AddNewAppComponent}
 ];
 @NgModule({
   exports: [RouterModule],

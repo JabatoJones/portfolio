@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   public submitted :boolean;
   public error:boolean;
-  loginForm: FormGroup;
+  public errorDesc:string;
 
   ngOnInit() {
   }
@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
     if(params.name && params.pass){
       this.userService.login(params).subscribe(
         res => {
+          this.error = false;
           let u: any = {username: username};        
           //this.userService.setUserLoggedIn(u);
   
@@ -49,12 +50,24 @@ export class LoginComponent implements OnInit {
         },
         () => this.navigate()
       );
-  
+    }else{
+      if(!params.name || !params.pass) {
+        this.error = true;
+        this.errorDesc = "Debe rellenar los campos de manera correcta";
+      }
     }
 
   }
 
+  public registro(): void {
+    this.router.navigateByUrl('/register');
+  }
+
   navigate() {    
     this.router.navigateByUrl('/dashboard');
+  }
+
+  errors() {
+    this.error = false;
   }
 }
