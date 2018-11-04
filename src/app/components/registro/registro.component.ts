@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 import { User } from "../../models/userlogin";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-registro',
+  templateUrl: './registro.component.html',
+  styleUrls: ['./registro.component.css']
 })
-export class LoginComponent implements OnInit {
+export class RegistroComponent implements OnInit {
 
   constructor(private userService: UserService,private router: Router,) { }
 
@@ -16,30 +16,32 @@ export class LoginComponent implements OnInit {
   public error:boolean;
   public errorDesc:string;
 
+
   ngOnInit() {
   }
 
-  /*login(datosAcceso){
-    this.userService.login(datosAcceso);
-  }*/
-  
- 
-
-  public login(username: string, password: string, event: Event): void {
+  public register(username:String,usersurname: String,email: String, pass: String, repass: String,apptitudes: String,regards: String ,event:Event): void {
     this.submitted = true;
     this.error = null;
-    const name = username;
-    const pass = password;
+  
     var params : any = {
-      'name' : name,
-      'pass' : pass
+      'name' : usersurname,
+      'surname' :username,
+      'pass' : pass,
+      'email' : email,
+      'apptitudes' : apptitudes,
+      'regards' : regards
     }
-    if(params.name && params.pass){
-      this.userService.login(params).subscribe(
+
+    if(pass != repass || !pass || !email ){
+      this.error = true;
+    }
+
+    if(!this.error){
+      this.userService.register(params).subscribe(
         res => {
           this.error = false;
-          let u: any = {username: username};   
-          var user = new User(res);
+          var user = new User(res.user);
           console.log(user);
   
         },
@@ -69,4 +71,5 @@ export class LoginComponent implements OnInit {
   errors() {
     this.error = false;
   }
+
 }

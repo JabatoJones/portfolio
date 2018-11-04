@@ -1,4 +1,6 @@
+var Aplication = require("../models/app");
 var Usuario = require("../models/user");
+
 const usuarioCtrl = {};
 
 usuarioCtrl.login = async (req,res)=>{
@@ -16,6 +18,7 @@ usuarioCtrl.login = async (req,res)=>{
     }else{
         //make session and setear al usuario.
         console.log('Usuario logado correctamente');
+        var user = new Usuario(response);
         res.json(response);
     }
 }
@@ -36,11 +39,14 @@ usuarioCtrl.getDataUser = async (req, res) => {
 }
 
 usuarioCtrl.register = async (req, res) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     try {
-        const user = new Usuario(req.body);
+    const user = new Usuario(req.body);
     await user.save();
     res.json({
         'status': 'Usuario Guardado',
+        'user' : user
     })
     } catch (error) {
         console.error(error);

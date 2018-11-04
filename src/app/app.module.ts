@@ -21,6 +21,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TemplateSrvService } from './servicios/template-srv.service';
 import { AddNewAppComponent } from './components/add-new-app/add-new-app.component';
+import { RegistroComponent } from './components/registro/registro.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { AddNewAppComponent } from './components/add-new-app/add-new-app.compone
     UserInfoComponent,
     FooterComponent,
     AddNewAppComponent,
+    RegistroComponent,
   ],
   imports: [
     FormsModule,

@@ -8,9 +8,7 @@ app.options('*', cors()); // preflight OPTIONS; put before other routes
 app.listen(80, function(){
   console.log('CORS-enabled web server listening on port 80');
 });
-/*const http = require('http');
-const path = require('path');
-*/
+
 //Settings
 app.set('port', process.env.PORT || 3000);
 //Middlewares
