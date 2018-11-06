@@ -25,12 +25,14 @@ export class RegistroComponent implements OnInit {
     this.error = null;
   
     var params : any = {
-      'name' : usersurname,
-      'surname' :username,
+      'name' : username,
       'pass' : pass,
+      'surname' :usersurname,      
       'email' : email,
-      'apptitudes' : apptitudes,
-      'regards' : regards
+      'aplications' : null,
+      'aptitudes' : apptitudes,      
+      'logros' : regards,
+      'img' : ''
     }
 
     if(pass != repass || !pass || !email ){
@@ -42,14 +44,15 @@ export class RegistroComponent implements OnInit {
         res => {
           this.error = false;
           var user = new User(res.user);
+          sessionStorage.setItem('user',JSON.stringify(user));
           console.log(user);
-  
+          this.navigate()
         },
         error => {
           console.error(error);
   
         },
-        () => this.navigate()
+        
       );
     }else{
       if(!params.name || !params.pass) {

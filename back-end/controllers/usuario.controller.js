@@ -6,6 +6,7 @@ const usuarioCtrl = {};
 usuarioCtrl.login = async (req,res)=>{
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    console.log(req.body);
     var user = req.body.user;
     var pass = req.body.pass;
     var response = await Usuario.findOne({user,pass});
@@ -18,6 +19,7 @@ usuarioCtrl.login = async (req,res)=>{
     }else{
         //make session and setear al usuario.
         console.log('Usuario logado correctamente');
+        console.log(response);
         var user = new Usuario(response);
         res.json(response);
     }
@@ -69,7 +71,7 @@ usuarioCtrl.editUser = async (req, res) => {
 
 usuarioCtrl.removeApp = async (req, res) => {
     const {id} = req.params.id;
-    await Usuario.findByIdAndRemove(id);
+    await Usuario.findOneAndRemove({'id':id});
     res.json({stauts:"App eliminada"})
 }
 

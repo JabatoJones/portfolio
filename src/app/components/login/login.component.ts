@@ -25,23 +25,22 @@ export class LoginComponent implements OnInit {
   
  
 
-  public login(username: string, password: string, event: Event): void {
+  public login(emailU: string, password: string, event: Event): void {
     this.submitted = true;
     this.error = null;
-    const name = username;
+    const email = emailU;
     const pass = password;
     var params : any = {
-      'name' : name,
+      'email' : email,
       'pass' : pass
     }
-    if(params.name && params.pass){
+    if(params.email && params.pass){
       this.userService.login(params).subscribe(
         res => {
           this.error = false;
-          let u: any = {username: username};   
           var user = new User(res);
-          console.log(user);
-  
+          sessionStorage.setItem('user',JSON.stringify(user));
+          console.log(user);  
         },
         error => {
           console.error(error);

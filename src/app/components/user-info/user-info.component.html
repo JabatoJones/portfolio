@@ -6,20 +6,18 @@
 </div>
 <div class="card border-warning">
   <div class="card-body">
-    <img class="card-img-top" src="../../../assets/img/user.svg" alt="Card image cap">
+    <img class="card-img-top" [src]= " user.url ? user.url : '../../../assets/img/user.svg'" alt="Card image cap">
     <hr>
-    <h4 class="card-title text-center">Nombre Usuario</h4>
+    <h4 class="card-title text-center">{{user.name}} {{user.surname}}</h4>
     <ngb-tabset>
       <ngb-tab id="configTab" title="Aptitudes" class="tabsUser">
         <ng-template ngbTabContent>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <p class="card-text">{{user.aptitudes}}</p>
         </ng-template>
       </ngb-tab>
       <ngb-tab id="configTab2" title="Mis Logros">
         <ng-template ngbTabContent>
-          <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque officiis aperiam deserunt error similique eius,
-            numquam voluptates ab unde voluptas quaerat quisquam vel asperiores fugiat exercitationem impedit illum ipsum
-            eum.
+          <p class="card-text">{{user.logros}}
           </p>
         </ng-template>
       </ngb-tab>
