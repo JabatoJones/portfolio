@@ -41,4 +41,28 @@ export class UserService {
       }
     })
   };
+
+  updateUser(datosAcceso:any):Observable<any> {
+    let body = datosAcceso;
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/x-www-form-urlencoded; charset=utf-8');
+    return this.http.post('http://localhost:3000/api/editUser', body, {
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+         "Access-Control-Allow-Origin": "*",
+      }
+    })
+  };
+
+  updateImage(image:any):Observable<any> {
+    let body = image;
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/x-www-form-urlencoded; charset=utf-8');
+    return this.http.post('http://localhost:3000/api/imageUpload', body, {
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+         "Access-Control-Allow-Origin": "*",
+      }
+    })
+  };
 }

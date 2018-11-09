@@ -10,7 +10,7 @@ import { User } from "../../models/userlogin";
 })
 export class RegistroComponent implements OnInit {
 
-  constructor(private userService: UserService,private router: Router,) { }
+  constructor(private userService: UserService,private router: Router) { }
 
   public submitted :boolean;
   public error:boolean;

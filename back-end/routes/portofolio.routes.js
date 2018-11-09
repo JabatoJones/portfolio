@@ -9,5 +9,6 @@ router.get('/api/register/:id',userCtrl.getDataUser);
 router.post('/api/register',userCtrl.register);
 router.put('/:id',userCtrl.editUser);
 router.delete('/:id',userCtrl.removeApp)
+router.post('/api/editUser',userCtrl.editUser);
 
 module.exports = router;

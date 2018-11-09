@@ -59,20 +59,36 @@ usuarioCtrl.register = async (req, res) => {
 }
 
 usuarioCtrl.editUser = async (req, res) => {
-    const usuario = {
-        name: req.body.name,
-        pass: req.body.pass,
-        suname : req.body.surname,
-    }
-
-    await Usuario.findByIdAndUpdate(req.params.id, { $set: usuario }, {new:true});
-    res.json({status : "Datos del usuario actualziados"})
-}
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    await Usuario.findOneAndUpdate({'id':req.body.id}, { $set: req.body }, {new:true});
+    res.json({
+        'status': 'Usuario Actualizado',
+        'user' : req.body
+    })
+};
 
 usuarioCtrl.removeApp = async (req, res) => {
     const {id} = req.params.id;
     await Usuario.findOneAndRemove({'id':id});
     res.json({stauts:"App eliminada"})
+}
+usuarioCtrl.uploadImage = async (req, res) => {
+    // Get the temporary location of the file
+    var tmp_path = req.files.thumbnail.path;    
+    // Set where the file should actually exists - in this case it is in the "images" directory.
+    target_path = '/tmp/' + req.files.thumbnail.name;
+    // Move the file from the temporary location to the intended location
+    fs.rename(tmp_path, target_path, function(err) {
+        if (err)
+            throw err;
+        // Delete the temporary file, so that the explicitly set temporary upload dir does not get filled with unwanted files.
+        fs.unlink(tmp_path, function() {
+            if (err)
+                throw err;
+            //
+        });
+    });
 }
 
 

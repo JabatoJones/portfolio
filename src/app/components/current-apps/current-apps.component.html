@@ -8,13 +8,13 @@
               <a href="addApp">View more</a>
             </figcaption>
           </figure>
-        <figure class="effect-oscar">
-          <img src="../../../assets/img/orangeico.jpg" alt="img09" />
+        <figure class="effect-oscar" *ngFor="let app of user.aplications; let i = index">
+          <img src="../../../assets/img/default.png" alt="img09" />
           <figcaption>
-            <h3 style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">Orange
+            <h3 style="color:black;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">{{app.name}}
             </h3>
-            <p>Breve descripcion de la aplicación.</p>
-            <a href="#">View more</a>
+            <p>{{app.desc}}</p>
+            <a [href] ="app.url">View more</a>
           </figcaption>
         </figure>
       </div>

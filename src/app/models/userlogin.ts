@@ -1,14 +1,14 @@
 export class User {
     
-    private _id:string;
-    private name: String;
-    private pass: String;    
-    private surname : String;
-    private email : String;
-    private aplications : [any];
-    private aptitudes : String;
-    private logros : String;
-    private img : String;
+    public _id:string;
+    public name: String;
+    public pass: String;    
+    public surname : String;
+    public email : String;
+    public aplications : [any];
+    public aptitudes : String;
+    public logros : String;
+    public img : String;
 
    constructor(userResponse) {
        this._id = userResponse._id;
@@ -21,4 +21,6 @@ export class User {
        this.logros = userResponse.logros;
        this.img = userResponse.img;
     }
+
+
 }
