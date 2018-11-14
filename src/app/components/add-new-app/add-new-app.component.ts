@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../../models/userlogin';
 import { UserService } from "../../servicios/user-service.service";
+import { LocalStorage } from '@ngx-pwa/local-storage';
 
 @Component({
   selector: 'app-add-new-app',
@@ -12,14 +13,20 @@ export class AddNewAppComponent implements OnInit {
 
   user : User;
 
-  constructor(private userService: UserService,private router: Router) { }
+  constructor(private userService: UserService,private router: Router,protected localStorage: LocalStorage) { }
 
   ngOnInit() {
+    this.localStorage.getItem('user').subscribe((user) => {
+      if ( user == null) {
+        this.router.navigateByUrl('/');
+      }else{
+        this.user = new User(user);
+        this.user.img = this.user.img ? this.user.img : '../../../assets/img/user.svg';
+      }
+    });
   }
 
   public addApp(name:String,desc: String,lenguaje: String, url: String,event:Event): void {
-
-    this.user = new User(JSON.parse(sessionStorage.getItem('user')));
     if(!this.user.aplications){
       this.user.aplications = [{'name':name,'desc':desc,'lenguaje':lenguaje,'url':url}];
     }else{
@@ -40,7 +47,8 @@ export class AddNewAppComponent implements OnInit {
       this.userService.updateUser(params).subscribe(
         res => {
           var user = new User(this.user);
-          sessionStorage.setItem('user',JSON.stringify(user));
+          this.localStorage.setItem('user', user).subscribe(() => {}, () => {});
+          //sessionStorage.setItem('user',JSON.stringify(user));
           console.log(user);
           this.router.navigateByUrl('/dashboard');
         },

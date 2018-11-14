@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from "../../servicios/user-service.service";
 import { Router } from '@angular/router';
 import { User } from "../../models/userlogin";
+import { LocalStorage } from '@ngx-pwa/local-storage';
 
 @Component({
   selector: 'app-registro',
@@ -10,7 +11,7 @@ import { User } from "../../models/userlogin";
 })
 export class RegistroComponent implements OnInit {
 
-  constructor(private userService: UserService,private router: Router) { }
+  constructor(private userService: UserService,private router: Router,protected localStorage: LocalStorage) { }
 
   public submitted :boolean;
   public error:boolean;
@@ -42,15 +43,20 @@ export class RegistroComponent implements OnInit {
     if(!this.error){
       this.userService.register(params).subscribe(
         res => {
-          this.error = false;
-          var user = new User(res.user);
-          sessionStorage.setItem('user',JSON.stringify(user));
-          console.log(user);
-          this.navigate()
+          if(res.error){
+            this.error = true;
+            this.errorDesc = "El correo introducido ya esta siendo usado";
+          }else{
+            this.error = false;
+            var user = new User(res.user);
+            this.localStorage.setItem('user', user).subscribe(() => {}, () => {});
+            //sessionStorage.setItem('user',JSON.stringify(user));
+            console.log(user);
+            this.navigate();
+          }          
         },
         error => {
-          console.error(error);
-  
+          console.error(error);  
         },
         
       );

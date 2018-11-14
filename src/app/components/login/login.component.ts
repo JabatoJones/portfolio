@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from "../../servicios/user-service.service";
 import { Router } from '@angular/router';
 import { User } from "../../models/userlogin";
+import { LocalStorage } from '@ngx-pwa/local-storage';
 
 @Component({
   selector: 'app-login',
@@ -10,19 +11,19 @@ import { User } from "../../models/userlogin";
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private userService: UserService,private router: Router,) { }
+  constructor(private userService: UserService,private router: Router,protected localStorage: LocalStorage) { }
 
   public submitted :boolean;
   public error:boolean;
   public errorDesc:string;
 
   ngOnInit() {
-  }
-
-  /*login(datosAcceso){
-    this.userService.login(datosAcceso);
-  }*/
-  
+    this.localStorage.getItem('user').subscribe((user) => {
+      if( user) {
+        this.router.navigateByUrl('/dashboard');
+      }
+    });
+  } 
  
 
   public login(emailU: string, password: string, event: Event): void {
@@ -37,16 +38,24 @@ export class LoginComponent implements OnInit {
     if(params.email && params.pass){
       this.userService.login(params).subscribe(
         res => {
-          this.error = false;
-          var user = new User(res);
-          sessionStorage.setItem('user',JSON.stringify(user));
-          console.log(user);  
+          if(res.error){
+            this.error = true;
+            this.errorDesc = res.error;
+            this.router.navigateByUrl('/');
+          }else{
+            this.error = false;
+            var user = new User(res.user);
+            let userString = JSON.stringify(user);
+            this.localStorage.setItem('user', user).subscribe(() => {}, () => {});
+            //sessionStorage.setItem('user',JSON.stringify(user));
+            console.log(user);  
+            this.navigate();
+          }          
         },
         error => {
           console.error(error);
   
-        },
-        () => this.navigate()
+        }        
       );
     }else{
       if(!params.name || !params.pass) {

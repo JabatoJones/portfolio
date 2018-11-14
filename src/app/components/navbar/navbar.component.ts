@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { TemplateSrvService } from '../../servicios/template-srv.service';
 import { Subject } from "rxjs/Subject";
+import { Router } from '@angular/router';
+import { LocalStorage } from '@ngx-pwa/local-storage';
 
 @Component({
   selector: 'app-navbar',
@@ -17,10 +19,14 @@ export class NavbarComponent {
       map(result => result.matches)
     );
     
-  constructor(private templateService: TemplateSrvService,private breakpointObserver: BreakpointObserver) {}
+  constructor(private templateService: TemplateSrvService,private breakpointObserver: BreakpointObserver,private router: Router,protected localStorage: LocalStorage) {}
 
   setTemplate(templateNumber:string){
     this.templateService.setTemplate(templateNumber);
+  }
+  logout(){
+    this.localStorage.removeItemSubscribe('user');
+    this.router.navigateByUrl('/');
   }
   
   

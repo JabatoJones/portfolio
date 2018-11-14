@@ -8,6 +8,14 @@
           <h4 class="mb-0">Alta nuevo usuario</h4>
         </div>
         <div class="card-body">
+          <form *ngIf="error == true">
+            <div class="alert alert-warning alert-danger fade show" role="alert">
+              <strong>!ERROR!</strong> {{errorDesc}}
+              <button (click)="errors()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </form>
           <form class="form" role="form" autocomplete="off">
             <div class="form-group row">
               <label class="col-lg-3 col-form-label form-control-label">Nombre</label>
@@ -16,27 +24,27 @@
               </div>
             </div>
             <div class="form-group row">
-                <label class="col-lg-3 col-form-label form-control-label">Apellidos</label>
-                <div class="col-lg-9">
-                  <input #usersurname class="form-control" type="text" placeholder="Apellidos">
-                </div>
-              </div>
-            <div class="form-group row">
-              <label class="col-lg-3 col-form-label form-control-label">Email</label>
+              <label class="col-lg-3 col-form-label form-control-label">Apellidos</label>
               <div class="col-lg-9">
-                <input #email  class="form-control" type="text" placeholder="Email">
+                <input #usersurname class="form-control" type="text" placeholder="Apellidos">
               </div>
             </div>
             <div class="form-group row">
-                <label class="col-lg-3 col-form-label form-control-label">Password</label>
-                <div class="col-lg-9">
-                  <input #pass class="form-control" type="text" placeholder="Password">
-                </div>
-                <label class="col-lg-3 col-form-label form-control-label">Confirma tu password</label>
-                <div class="col-lg-9">
-                    <input #repass class="form-control" type="text" placeholder="Repite password">
-                  </div>
+              <label class="col-lg-3 col-form-label form-control-label">Email</label>
+              <div class="col-lg-9">
+                <input #email class="form-control" type="text" placeholder="Email">
               </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-lg-3 col-form-label form-control-label">Password</label>
+              <div class="col-lg-9">
+                <input #pass class="form-control" type="text" placeholder="Password">
+              </div>
+              <label class="col-lg-3 col-form-label form-control-label">Confirma tu password</label>
+              <div class="col-lg-9">
+                <input #repass class="form-control" type="text" placeholder="Repite password">
+              </div>
+            </div>
             <div class="form-group row">
               <label class="col-lg-3 col-form-label form-control-label">Aptitudes</label>
               <div class="col-lg-9">
@@ -44,17 +52,17 @@
               </div>
             </div>
             <div class="form-group row">
-                <label class="col-lg-3 col-form-label form-control-label">Logros profesionales</label>
-                <div class="col-lg-9">
-                  <input #regards class="form-control" type="text" placeholder="Añade tus logros profesionales">
-                </div>
+              <label class="col-lg-3 col-form-label form-control-label">Logros profesionales</label>
+              <div class="col-lg-9">
+                <input #regards class="form-control" type="text" placeholder="Añade tus logros profesionales">
               </div>
+            </div>
             <div class="form-group row">
               <label class="col-lg-3 col-form-label form-control-label"></label>
               <div class="col-lg-9">
-                <a href="dashboard" class="btn btn-secondary" value="Cancel">Cancelar</a>   
-                <input type="submit" (click)="register(username.value,usersurname.value,email.value, pass.value,repass.value,apptitudes.value,regards.value,$event)" 
-                class="btn btn-warning" value="Regitrarse" style="margin-left: 3em;">
+                <a href="dashboard" class="btn btn-secondary" value="Cancel">Cancelar</a>
+                <input type="submit" (click)="register(username.value,usersurname.value,email.value, pass.value,repass.value,apptitudes.value,regards.value,$event)"
+                  class="btn btn-warning" value="Regitrarse" style="margin-left: 3em;">
               </div>
             </div>
           </form>

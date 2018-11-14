@@ -3,6 +3,8 @@ import { NgbTabsetConfig } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient } from '@angular/common/http';
 import { User } from "../../models/userlogin";
 import { UserService } from "../../servicios/user-service.service";
+import { LocalStorage } from '@ngx-pwa/local-storage';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'user-info',
@@ -15,18 +17,20 @@ export class UserInfoComponent implements OnInit {
   public error : boolean;
   public errorDesc : String;
 
-  constructor(config: NgbTabsetConfig, public http: HttpClient,private userService: UserService) {
+  constructor(config: NgbTabsetConfig, private router: Router,public http: HttpClient,private userService: UserService,protected localStorage: LocalStorage) {
     // customize default values of tabsets used by this component tree
     config.justify = 'center';
     config.type = 'pills';
   }
   ngOnInit() {
-    if(sessionStorage.getItem('user')){
-      this.user = new User(JSON.parse(sessionStorage.getItem('user')));
-    }else{
-      this.error = true;
-      this.errorDesc = "No existe usuario";
-    }
+    this.localStorage.getItem('user').subscribe((user) => {
+      if ( user == null) {
+        this.router.navigateByUrl('/');
+      }else{
+        this.user = new User(user);
+        this.user.img = this.user.img ? this.user.img : '../../../assets/img/user.svg';
+      }
+    });
   }
 
   onFileChanged(event) {

@@ -1,5 +1,18 @@
 var Aplication = require("../models/app");
 var Usuario = require("../models/user");
+var mongoose = require('mongoose');
+const {Schema} = mongoose;
+const UserSchema = new Schema({
+    id:{type:String},
+    name:{type:String},
+    pass: {type:String, require:true ,match: [/^[a-zA-Z0-9]+$/, 'La contraseña no es valida']},
+    surname: {type : String},
+    email: {type: String,require:true,unique: true},
+    aplications : {type:[]},
+    aptitudes : {type : String},
+    logros :{type : String},
+    img : {type:String}
+});
 
 const usuarioCtrl = {};
 
@@ -7,22 +20,25 @@ usuarioCtrl.login = async (req,res)=>{
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     console.log(req.body);
-    var user = req.body.user;
-    var pass = req.body.pass;
-    var response = await Usuario.findOne({user,pass});
+    var userRes,errorRes= null;
+
+    var userModel = mongoose.model('user', UserSchema, 'usuarios');
+    var response = await userModel.findOne({'email':req.body.email, 'pass':req.body.pass});
+
     if(!response) {
         //login incorrecto
-        console.log('user incorrect');
-        res.json({
-            error : "Usuario/Password incorrecto"
-        })
+        console.log("Usuario/Password incorrecto",response);
+        errorRes = 'Usuario/Password incorrecto';
+        userRes = response;
     }else{
         //make session and setear al usuario.
         console.log('Usuario logado correctamente');
-        console.log(response);
-        var user = new Usuario(response);
-        res.json(response);
+        userRes = new Usuario(response);
     }
+    res.json({
+        error : errorRes,
+        user: userRes
+    })
 }
 
 usuarioCtrl.getAllUser = async (req, res) => {
@@ -61,7 +77,7 @@ usuarioCtrl.register = async (req, res) => {
 usuarioCtrl.editUser = async (req, res) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    await Usuario.findOneAndUpdate({'id':req.body.id}, { $set: req.body }, {new:true});
+    await Usuario.findOneAndUpdate({'email':req.body.email}, { $set: req.body }, {new:true});
     res.json({
         'status': 'Usuario Actualizado',
         'user' : req.body

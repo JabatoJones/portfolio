@@ -24,6 +24,7 @@ import { AddNewAppComponent } from './components/add-new-app/add-new-app.compone
 import { RegistroComponent } from './components/registro/registro.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
