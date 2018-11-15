@@ -1,0 +1,86 @@
+<app-navbar></app-navbar>
+<br>
+<br>
+<br>
+<div class="container">
+  <div class="col-4" style="float: left;">
+    <div class="card-body">
+      <img class="card-img-top" src="{{user.img}}" alt="Card image cap">
+      <hr>
+      <h3 class="card-title text-center">{{user.name}} {{user.surname}}</h3>
+      <p class="card-title text-center">{{user.email}}</p>
+      <hr>
+      <span class="badge bg-warning" *ngFor="let app of user.aplications; let i = index" style="margin: 0.5em 0.5em 0.5em">{{app.name}}</span>
+    </div>
+  </div>
+  <div class="col-8" style="float: right;">
+    <form *ngIf="error == true">
+      <div class="alert alert-warning alert-danger fade show" role="alert">
+        <strong>!ERROR!</strong> {{errorDesc}}
+        <button (click)="errors()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </form>
+    <form class="form" role="form" autocomplete="off">
+      <div class="form-group row">
+        <label class="col-lg-3 col-form-label form-control-label">Nombre</label>
+        <div class="col-lg-9">
+          <input #username class="form-control" type="text" placeholder="{{user.name}}">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-lg-3 col-form-label form-control-label">Apellidos</label>
+        <div class="col-lg-9">
+          <input #usersurname class="form-control" type="text" placeholder="{{user.surname}}">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-lg-3 col-form-label form-control-label">Email</label>
+        <div class="col-lg-9">
+          <input #email class="form-control" type="text" placeholder="Email">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-lg-3 col-form-label form-control-label">Password</label>
+        <div class="col-lg-9">
+          <input #pass class="form-control" type="text" placeholder="Password">
+        </div>
+        <label class="col-lg-3 col-form-label form-control-label">Confirma tu password</label>
+        <div class="col-lg-9">
+          <input #repass class="form-control" type="text" placeholder="Repite password">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-lg-3 col-form-label form-control-label">Logros profesionales</label>
+        <div class="col-lg-9">
+          <input #regards class="form-control" type="text" placeholder="Añade tus logros profesionales">
+        </div>
+      </div>
+<br>
+      <hr>
+      <p>Lenguajes destacados</p>
+      <label *ngFor="let opt of options" class="badge bg-info" style="color:whitesmoke; margin: 0.5em 0.5em 0.5em">
+          <input type="checkbox"                 
+                 [(checklist)]="list"
+                 [checklistValue]="opt" />
+          {{opt}}
+        </label>
+      <!-- <label *ngFor="let role of options; let i = index">
+          <input type="checkbox" checklist-model="list.option" checklist-value="role"> 
+          <span class="badge bg-warning" style="margin: 0.5em 0.5em 0.5em">{{role}}</span>
+        </label>
+      -->
+
+      <div class="form-group row">
+        <label class="col-lg-3 col-form-label form-control-label"></label>
+        <div class="col-lg-9">
+          <a href="dashboard" class="btn btn-secondary" value="Cancel">Cancelar</a>
+          <input type="submit" (click)="editUser()" class="btn btn-warning" value="Regitrarse" style="margin-left: 3em;">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<footer></footer>

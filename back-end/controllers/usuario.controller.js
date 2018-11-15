@@ -21,7 +21,7 @@ usuarioCtrl.login = async (req,res)=>{
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     console.log(req.body);
     var userRes,errorRes= null;
-
+    //El tercer argumento es el nombre de la colección que se utilizará en lugar de lo que se determinará en función del nombre del modelo.
     var userModel = mongoose.model('user', UserSchema, 'usuarios');
     var response = await userModel.findOne({'email':req.body.email, 'pass':req.body.pass});
 

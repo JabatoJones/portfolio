@@ -1,14 +1,18 @@
 <div class="custom-file">
-  <input type="file" (change)="onFileChanged($event)"  #fileInput class="custom-file-input" id="customFile" style="visibility: hidden;">
+  <input type="file" (change)="onFileChanged($event)" #fileInput class="custom-file-input" id="customFile" style="visibility: hidden;">
   <label class="custom-file-label" for="customFile" style="visibility: hidden;">
     <mat-icon class="editFoto" style="height: 1.2em; width: 1.2em; border-radius: 1em; visibility: visible;">add_a_photo</mat-icon>
   </label>
 </div>
 <div class="card border-warning">
   <div class="card-body">
-    <img class="card-img-top" src= "{{user.img}}" alt="Card image cap">
+    <img class="card-img-top" src="{{user.img}}" alt="Card image cap">
     <hr>
     <h4 class="card-title text-center">{{user.name}} {{user.surname}}</h4>
+    <p class="card-title text-center">{{user.email}}</p>
+    <hr>
+    <span class="badge" *ngFor="let app of user.aplications; let i = index" style="color: whitesmoke; background-color: #D5A400; margin: 0.5em 0.5em 0.5em">{{app.name}}</span>
+    <hr>
     <ngb-tabset>
       <ngb-tab id="configTab" title="Aptitudes" class="tabsUser">
         <ng-template ngbTabContent>

@@ -28,6 +28,9 @@ export class NavbarComponent {
     this.localStorage.removeItemSubscribe('user');
     this.router.navigateByUrl('/');
   }
+  profile(){
+    this.router.navigateByUrl('/profile');
+  }
   
   
   }

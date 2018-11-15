@@ -1,4 +1,4 @@
-$(function () {
+/*$(function () {
     $('.list-group.checked-list-box .list-group-item').each(function () {
         
         // Settings
@@ -76,3 +76,4 @@ $(function () {
         $('#display-json').html(JSON.stringify(checkedItems, null, '\t'));
     });
 });
+*/

@@ -22,6 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { TemplateSrvService } from './servicios/template-srv.service';
 import { AddNewAppComponent } from './components/add-new-app/add-new-app.component';
 import { RegistroComponent } from './components/registro/registro.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { ChecklistModule } from 'angular-checklist';
 
 
 
@@ -36,8 +38,10 @@ import { RegistroComponent } from './components/registro/registro.component';
     FooterComponent,
     AddNewAppComponent,
     RegistroComponent,
+    UserProfileComponent,
   ],
   imports: [
+    ChecklistModule,
     FormsModule,
     BrowserModule,
     HttpClientModule,
