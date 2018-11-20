@@ -1,5 +1,7 @@
 var Aplication = require("../models/app");
 var Usuario = require("../models/user");
+const uploadFolder = "./../uploads/";
+const fs = require('fs');
 var mongoose = require('mongoose');
 const {Schema} = mongoose;
 const UserSchema = new Schema({
@@ -90,24 +92,36 @@ usuarioCtrl.removeApp = async (req, res) => {
     res.json({stauts:"App eliminada"})
 }
 usuarioCtrl.uploadImage = async (req, res) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     // Get the temporary location of the file
     var tmp_path = req.files.thumbnail.path;    
     // Set where the file should actually exists - in this case it is in the "images" directory.
     target_path = '/tmp/' + req.files.thumbnail.name;
     // Move the file from the temporary location to the intended location
     fs.rename(tmp_path, target_path, function(err) {
-        if (err)
+        if (err){
             throw err;
-        // Delete the temporary file, so that the explicitly set temporary upload dir does not get filled with unwanted files.
-        fs.unlink(tmp_path, function() {
-            if (err)
-                throw err;
-            //
-        });
+        }   
+        else{
+            fs.unlink(tmp_path, function () {
+                if (err){
+                    throw err;
+                }  else{
+                    console.log(req.file.filename);
+                    res.send('File uploaded successfully! -> filename = ' + req.file.filename);
+                }
+            });
+        }
+        
     });
 }
 
-
-
+ 
+usuarioCtrl.uploadFile = (req, res) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.json(req.file.filename);
+}
 
 module.exports = usuarioCtrl; 

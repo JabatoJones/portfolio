@@ -24,6 +24,9 @@ import { AddNewAppComponent } from './components/add-new-app/add-new-app.compone
 import { RegistroComponent } from './components/registro/registro.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { ChecklistModule } from 'angular-checklist';
+import { FormUploadComponent } from './upload/form-upload/form-upload.component';
+import { ListUploadComponent } from './upload/list-upload/list-upload.component';
+import { DetailsUploadComponent } from './upload/details-upload/details-upload.component';
 
 
 
@@ -39,6 +42,9 @@ import { ChecklistModule } from 'angular-checklist';
     AddNewAppComponent,
     RegistroComponent,
     UserProfileComponent,
+    FormUploadComponent,
+    ListUploadComponent,
+    DetailsUploadComponent,
   ],
   imports: [
     ChecklistModule,
