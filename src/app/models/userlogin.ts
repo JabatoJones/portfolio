@@ -9,6 +9,7 @@ export class User {
     public aptitudes : String;
     public logros : String;
     public img : String;
+    public skillPrograms : [String]
 
    constructor(userResponse) {
        this._id = userResponse._id;
@@ -20,6 +21,7 @@ export class User {
        this.aptitudes = userResponse.aptitudes;
        this.logros = userResponse.logros;
        this.img = userResponse.img;
+       this.skillPrograms = userResponse.skillPrograms;
     }
 
 

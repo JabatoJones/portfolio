@@ -41,7 +41,8 @@ export class AddNewAppComponent implements OnInit {
       'aplications' : this.user.aplications,
       'aptitudes' : this.user.aptitudes,      
       'logros' : this.user.logros,
-      'img' : this.user.img
+      'img' : this.user.img,
+      'skillPrograms' : this.user.skillPrograms
     }
 
       this.userService.updateUser(params).subscribe(

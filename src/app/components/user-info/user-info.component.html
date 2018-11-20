@@ -11,7 +11,7 @@
     <h4 class="card-title text-center">{{user.name}} {{user.surname}}</h4>
     <p class="card-title text-center">{{user.email}}</p>
     <hr>
-    <span class="badge" *ngFor="let app of user.aplications; let i = index" style="color: whitesmoke; background-color: #D5A400; margin: 0.5em 0.5em 0.5em">{{app.name}}</span>
+    <span class="badge" *ngFor="let app of user.skillPrograms; let i = index" style="color: whitesmoke; background-color: #D5A400; margin: 0.5em 0.5em 0.5em">{{app}}</span>
     <hr>
     <ngb-tabset>
       <ngb-tab id="configTab" title="Aptitudes" class="tabsUser">

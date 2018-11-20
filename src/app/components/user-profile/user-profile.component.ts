@@ -14,7 +14,11 @@ import { ChecklistModule } from 'angular-checklist';
 export class UserProfileComponent implements OnInit {
 
   public user: User;
-
+  public error:boolean;
+  public errorDesc:string;
+  public succes:boolean;
+  public succesDesc:String;
+  
   options = [
     'JavaScript',
     'PHP',
@@ -46,13 +50,38 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  editUser() {
+  editUser(name:String,surname:String,email:String,pass:String,repass:String,aptitudes:String,logros:String,$event:Event) {
     let vm = this;
-    /*
-    const selectedOrderIds = this.form.value.orders
-      .map((v, i) => v ? this.orders[i].id : null)
-      .filter(v => v !== null);
-*/
-    console.log(vm.list);
+    var params : any = {
+      'name' : name ? name : this.user.name,
+      'pass' : pass ? pass : this.user.pass,
+      'surname' :surname ? surname : this.user.surname,      
+      'email' : email ? email : this.user.email,
+      'aplications' : this.user.aplications,
+      'aptitudes' : aptitudes ? aptitudes : this.user.aptitudes,      
+      'logros' : logros ? logros : this.user.logros,
+      'img' : this.user.img,
+      'skillPrograms' : this.list ? this.list : this.user.skillPrograms
+    }
+
+    this.userService.updateUser(params).subscribe(
+      res => {
+        if(res.error){
+          this.error = true;
+          this.succes = false;
+          this.errorDesc = "Error al modificar el usuario";
+        }else{
+          this.error = false;
+          this.succes = true;
+          this.succesDesc = "Usuario modificado correctamente";
+          this.user = new User(res.user);
+          this.localStorage.setItem('user', this.user).subscribe(() => {}, () => {});
+          console.log(this.user);
+        }          
+      },
+      error => {
+        console.error(error);  
+      },      
+    );
   }
 }

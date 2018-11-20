@@ -13,14 +13,12 @@ export class RegistroComponent implements OnInit {
 
   constructor(private userService: UserService,private router: Router,protected localStorage: LocalStorage) { }
 
-  public submitted :boolean;
   public error:boolean;
   public errorDesc:string;
   ngOnInit() {}
 
 
   public register(username:String,usersurname: String,email: String, pass: String, repass: String,apptitudes: String,regards: String ,event:Event): void {
-    this.submitted = true;
     this.error = null;
   
     var params : any = {
@@ -31,7 +29,8 @@ export class RegistroComponent implements OnInit {
       'aplications' : null,
       'aptitudes' : apptitudes,      
       'logros' : regards,
-      'img' : ''
+      'img' : '',
+      'skillPrograms' : []
     }
 
     if(pass != repass || !pass || !email ){
@@ -48,7 +47,6 @@ export class RegistroComponent implements OnInit {
             this.error = false;
             var user = new User(res.user);
             this.localStorage.setItem('user', user).subscribe(() => {}, () => {});
-            //sessionStorage.setItem('user',JSON.stringify(user));
             console.log(user);
             this.navigate();
           }          

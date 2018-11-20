@@ -12,7 +12,8 @@ const UserSchema = new Schema({
     aplications : {type:[]},
     aptitudes : {type : String},
     logros :{type : String},
-    img : {type:String}
+    img : {type:String},
+    skillPrograms: {type:[]}
 });
 
 module.exports = mongoose.model("Usuario",UserSchema);
